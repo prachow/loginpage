@@ -3,88 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
+    <title>Login Page</title>
     
-    <!-- Add CSS for colorful background and form styling -->
+    <!-- Add CSS for colorful background -->
     <style>
-         body{
-          background: url('Images/background.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        
-        /* Basic styling for header */
-        header {
-          background-color: #f4c10a;
-          padding: 20px 0;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        body {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
         }
         
         .container {
-          width: 90%;
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .logo img {
-          max-height: 40px; /* Adjust height as needed */
-        }
-        
-        .logo h1 {
-          color: rgb(9, 167, 230);
-          margin-right: 10px;
-        }
-        
-        .buttons {
-          display: flex;
-          align-items: center;
-        }
-        
-        .buttons a {
-          text-decoration: none;
-          padding: 10px 20px;
-          margin-left: 15px;
-          border: 1px solid #000000;
-          border-radius: 4px;
-          color: #000000;
-          transition: all 0.3s ease;
-        }
-        
-        .buttons a:hover {
-          background-color: #000000;
-          color: #ffffff;
-        }
-
         h2 {
-            color: #0096FF;
+            color: white;
+            font-size: 3em;
             text-align: center;
-            margin-top: 140px;
-            font-size: 4em;
+            margin-top: 50px;
         }
-
+        
         form {
             background-color: linen;
             padding: 70px;
             border-radius: 30px;
-            width: 500px;
-            height: 450px;
+            width: 200px;
+            height: 200px;
             margin: 20px auto;
             margin-top: 80px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             animation: fadeInUp 0.5s ease-in-out; /* Add animation */
         }
+        
+        
+        form:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+        .buttons {
+            display: flex;
+            align-items: center;
+        }
 
-        /* Add a style for grouping label and input elements */
+        .buttons a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .buttons a:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        /* Add style for grouping label and input elements */
         .form-group {
             margin-bottom: 15px;
         }
+
     </style>
 </head>
 
@@ -104,23 +90,8 @@
         </div>
     </header>
 
-    <h2>Registration Page</h2>
-    <form action="register_process.php" method="POST">
-        <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" name="firstName" required>
-        </div>
-
-        <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input type="text" name="lastName" required>
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email Id:</label>
-            <input type="email" name="email" required>
-        </div>
-
+    <h2>Login Page</h2>
+    <form action="login_process.php" method="POST">
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" name="username" required>
@@ -131,12 +102,63 @@
             <input type="password" name="password" required>
         </div>
 
-        <div class="form-group">
-            <label for="dob">Date of Birth:</label>
-            <input type="date" name="dob" required>
-        </div>
-
-        <input type="submit" value="Register">
+        <input type="submit" value="Login">
     </form>
+
+    <!-- Add JavaScript scripts -->
+    <script>
+        // Your first script for the login/register animation
+        var x=document.getElementById('login');
+        var y=document.getElementById('register');
+        var z=document.getElementById('btn');
+        function register()
+        {
+            x.style.left='-400px';
+            y.style.left='50px';
+            z.style.left='110px';
+        }
+        function login()
+        {
+            x.style.left='50px';
+            y.style.left='450px';
+            z.style.left='0px';
+        }
+    </script>
+
+    <script>
+        // Your second script for the modal display
+        var modal = document.getElementById('login-form');
+        window.onclick = function(event) 
+        {
+            if (event.target == modal) 
+            {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        // Your third script for password strength
+        var pass=document.getElementById('password');
+        var msg=document.getElementById('message');
+        var str=document.getElementById('strenght');
+        pass.addEventListener('input',()=>{
+            if (pass.value.length>0){
+                msg.style.display='block';
+            }
+            else{
+                msg.style.display='none';
+            }
+            if (pass.value.length<4){
+                str.innerHTML='weak';
+                pass.style.borderColor='black';
+                msg.style.color='yellow';
+                str.style.color='yellow';
+            }
+            else if (pass.value.length>=4 && pass.value.length>=4 ){
+                str.innerHTML='strong';
+            }
+        })
+    </script>
 </body>
 </html>
